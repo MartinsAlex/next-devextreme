@@ -3,6 +3,12 @@ import React, { useCallback, useState } from "react";
 import DataGrid, { Column, Button, Selection } from "devextreme-react/data-grid";
 import { employees } from "./data.js";
 
+const buttonRender = (data) => {
+  return       <button
+  type="button"
+  className="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Edit </button>;
+}
+
 export default function Home() {
 
   return (
@@ -15,7 +21,7 @@ export default function Home() {
             hoverStateEnabled={true}
             keyExpr="ID"
             //onSelectionChanged={onSelectionChanged}
-          >
+          > 
             <Selection mode="single" />
             <Column dataField="Prefix" caption="Title" width={70} />
             <Column dataField="FirstName" />
@@ -23,10 +29,14 @@ export default function Home() {
             <Column dataField="Position" width={180} />
             <Column dataField="BirthDate" dataType="date" />
             <Column dataField="HireDate" dataType="date" />
+            <Column dataField="Tags" >
+                <Button
+                    render={buttonRender}
+                />
+            </Column>
             <Column type="buttons">
                 <Button
-                    name="save"
-                    cssClass="my-class"
+                    render={buttonRender}
                 />
             </Column>
           </DataGrid>
